@@ -16,5 +16,9 @@ elsif input.match?(/\A-?\d+(\.\d+)?\z/)
 end
 
 count = 0
-input.each_char { count += 1 }
+#input.each_char { count += 1 }
+
+while input[count] do
+  count += 1
+end
 puts count
