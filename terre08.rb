@@ -14,7 +14,7 @@ if en_trop
 end
 
 # Vérifie que les arguments sont des nombres valides
-if nombre.nil? || exposant.nil? || !nombre.match?(/\A-?\d+(\.\d+)?\z/) || !exposant.match?(/\A-?\d+(\.\d+)?\z/) || exposant.to_i < 0
+if nombre.nil? || exposant.nil? || !nombre.match?(/\A-?\d+(\.\d+)?\z/) || !exposant.match?(/\A\d+(\.\d+)?\z/)
   puts 'erreur'
   exit
 end
