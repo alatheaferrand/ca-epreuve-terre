@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 # L'alphabet
 # Affiche l'alphabet en lettres minuscules suivi d'un retour à la ligne
 
-alphabet = ""
+alphabet = ''
 
 for n in 'a'..'z'
   alphabet << n
