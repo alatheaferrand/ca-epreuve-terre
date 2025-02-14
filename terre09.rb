@@ -17,8 +17,15 @@ if entier.nil? || !entier.match?(/\A\d+\z/)
 end
 
 # Calculer la racine carrée
-entier = entier.to_i
-resultat = 1
-resultat = entier * entier
+entier = entier.to_f
+racine = 0
 
-puts resultat
+until racine * racine >= entier
+    racine += 1
+end
+
+if racine * racine == entier
+  puts racine
+else
+ puts racine.to_s + " (resultat arrondi a l'entier superieur)"
+end
