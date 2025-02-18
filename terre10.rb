@@ -40,8 +40,8 @@ end
 
 # S'assurer que racine est impair pour la prochaine boucle
 if racine % 2 == 0
-    racine -= 1
-  end
+  racine -= 1
+end
 
 # Vérifier s'il existe un diviseur impair entre 3 et la racine
 diviseur = false
