@@ -13,4 +13,4 @@ end
 #  alphabet << i.chr
 # end
 
-puts "#{alphabet}\n"
+puts alphabet
