@@ -3,12 +3,14 @@
 
 alphabet = ''
 
-for n in 'a'..'z'
-  alphabet << n
+i = 97 # Code ASCII de 'a'
+while i <= 122 # Code ASCII de 'z'
+  alphabet << i.chr
+  i += 1
 end
 
-puts "#{alphabet}\n"
-
-# ('a'..'z').each do |letter|
-#   alphabet << letter
+# for i in 97..122 # Code ASCII 'a'..'z'
+#  alphabet << i.chr
 # end
+
+puts "#{alphabet}\n"
