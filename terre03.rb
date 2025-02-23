@@ -1,19 +1,19 @@
+# frozen_string_literal: true
+
 # L'alphabet à partir de
 # Affiche l’alphabet à partir de la lettre donnée en argument en lettres minuscules
-# suivi d’un retour à la ligne
+# suivi d’un retour à la ligne.
 
-# Récupération et conversion de l'argument en décimal (code ASCII)
 first_letter = ARGV[0].ord
 
-# Conversion en minuscule
-first_letter = (first_letter + 32) if first_letter <= 90 && first_letter >= 65
+# Convertit en minuscule si l'argument est une majuscule
+first_letter += 32 if first_letter.between?(65, 90)
 
-alphabet = ''
-i = first_letter
+alphabet = String.new
 
-while i <= 122 # Code ASCII de 'z'
-  alphabet << i.chr
-  i += 1
+while first_letter <= 122 # ASCII de 'z'
+  alphabet << first_letter.chr
+  first_letter += 1
 end
 
 puts alphabet
