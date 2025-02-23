@@ -1,25 +1,26 @@
+# frozen_string_literal: true
+
 # Nom du programme
-# Programme qui affiche son nom de fichier
+# Programme qui affiche son nom de fichier sans utiliser de méthode native.
 
-# Récupération du chemin complet du fichier
-path = __FILE__
+file_path = __FILE__
 
-# Trouver l'index du dernier séparateur (sans méthode native)
-last_slash_index = -1
-index = 0
+# Trouver le dernier séparateur (compatible Windows & Linux/Mac)
+last_separator_index = -1
+i = 0
 
-while path[index]
-  last_slash_index = index if path[index] == '/' || path[index] == '\\' # Windows & Linux/Mac
-index += 1
+while file_path[i]
+  last_separator_index = i if file_path[i] == '/' || file_path[i] == '\\'
+  i += 1
 end
 
-# Extraction du nom du fichier
-filename = ''
-index = last_slash_index + 1
+# Extraire le nom du fichier
+file_name = String.new
+i = last_separator_index + 1
 
-while path[index]
-  filename << path[index]
-  index += 1
+while file_path[i]
+  file_name << file_path[i]
+  i += 1
 end
 
-puts filename
+puts file_name
