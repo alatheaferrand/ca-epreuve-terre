@@ -1,38 +1,26 @@
+# frozen_string_literal: true
+
 # 12 to 24
-# Transforme heure affichée d'un format 12h au format 24h
-# Attention à midi et minuit
+# Convertit une une 12h AM/PM en format 24h
+# Attention: midi et minuit
 
-heure = ARGV[0]
-en_trop = ARGV[1]
-
-if ARGV[0].nil? || en_trop
- puts 'erreur'
- exit
-end
-
-# Vérifier si l'argument est au bon format
-if !heure.match?(/\A\d{2}:\d{2}[AP]M\z/)
+# Vérification des erreurs
+if ARGV.size != 1 || !ARGV[0].match?(/\A(0[1-9]|1[0-2]):[0-5]\d[AP]M\z/)
   puts 'erreur'
   exit
 end
 
-# Récupérer les heures, les minutes, l'acronyme
-heures = (heure[0] + heure[1]).to_i
-minutes = (heure[3] + heure[4]).to_s
-acronyme = heure[5].to_s
+# Extraction des heures, minutes et suffixe
+heure = ARGV[0]
+heures = heure[0..1]
+minutes = heure[3..4]
+suffixe = heure[5]
 
-# Convertir les heures du matin
-if acronyme == 'A'
-    if heures == 12
-      heures = '00'
-    elsif heures >= 1 && heures <= 9
-      heures = '0' + heures.to_s
-    end
+# Conversion 12h → 24h
+if suffixe == 'A'
+  heures = '00' if heures == '12'
+elsif suffixe == 'P' && heures != '12'
+  heures = heures.to_i + 12
 end
 
-# Convertir les heures de l'après-midi
-if acronyme == 'P' && heures >= 1 && heures <= 11
-    heures += 12
-  end
-
-puts heures.to_s + ':' + minutes
+puts "#{heures}:#{minutes}"
