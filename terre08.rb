@@ -1,31 +1,23 @@
+# frozen_string_literal: true
+
 # Puissance d'un nombre
-# Affiche le résultat d'une puissance
-# L'exposant ne pourra pas être négatif
-# Ne pas utiliser la fonction pow
+# Affiche le résultat d'une puissance.
+# L'exposant ne pourra pas être négatif.
+# Fonction interdite: la fonction pow.
 
-nombre = ARGV[0]
-exposant = ARGV[1]
-en_trop = ARGV[2]
-
-# Vérifie s'il y a un argument en trop
-if en_trop
+# Vérification des erreurs
+if ARGV.size != 2 || ARGV[0].to_i.to_s != ARGV[0] || ARGV[1].to_i.to_s != ARGV[1] || ARGV[1].to_i.negative?
   puts 'erreur'
   exit
 end
 
-# Vérifie que les arguments sont des nombres valides
-if nombre.nil? || exposant.nil? || !nombre.match?(/\A-?\d+(\.\d+)?\z/) || !exposant.match?(/\A\d+(\.\d+)?\z/)
-  puts 'erreur'
-  exit
-end
-
-# Conversion en nombres entiers
-nombre = nombre.to_i
-exposant = exposant.to_i
+# Conversion en entiers
+nombre = ARGV[0].to_i
+exposant = ARGV[1].to_i
 
 # Calcul de la puissance (sans pow)
 resultat = 1
-until exposant == 0
+while exposant.positive?
   resultat *= nombre
   exposant -= 1
 end
