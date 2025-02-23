@@ -1,11 +1,16 @@
-# Divisions
-# Affiche le résultat et le reste d'une division entre 2 nombres
+# frozen_string_literal: true
 
-if ARGV[1].to_i > 0 && ARGV[0].to_i >= ARGV[1].to_i
-  x = ARGV[0].to_i
-  y = ARGV[1].to_i
-  puts "résultat : #{ (x/y) }"
-  puts "reste : #{ (x % y) }"
+# Divisions
+# Affiche le résultat et le reste d'une division entre 2 nombres.
+
+# Récupération des arguments convertis en entiers
+x = ARGV[0].to_i
+y = ARGV[1].to_i
+
+# Vérification des conditions de division
+if y.zero? || x < y
+  puts 'erreur.'
 else
-  puts "erreur"
+  puts "résultat: #{x / y}"
+  puts "reste: #{x % y}"
 end
