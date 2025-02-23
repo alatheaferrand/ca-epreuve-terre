@@ -17,8 +17,8 @@ end
 
 # Extraction des heures et minutes
 heure = ARGV[0]
-heures = (heure[0] + heure[1]).to_i
-minutes = (heure[3] + heure[4]).to_s
+heures = heure[0..1].to_i
+minutes = heure[3..4]
 suffixe = 'AM'
 
 # Conversion 24h → 12h
