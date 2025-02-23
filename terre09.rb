@@ -1,31 +1,20 @@
+# frozen_string_literal: true
+
 # Racine carrée d'un nombre
 # Affiche la racine carrée d'un entier positif
-# Sans utiliser la fonction sqrt
+# Fonction interdite: la fonction sqrt
 
-# Vérifier si l'argument est valide et s'il y a le bon nombre d'argument
-entier = ARGV[0]
-en_trop = ARGV[1]
-
-if en_trop
-  puts 'erreur'
-  exit
-end
-
-if entier.nil? || !entier.match?(/\A\d+\z/)
+# Vérification des erreurs
+if ARGV.size != 1 || ARGV[0].to_i.to_s != ARGV[0] || ARGV[0].to_i.negative?
   puts 'erreur'
   exit
 end
 
 # Calculer la racine carrée
-entier = entier.to_f
+entier = ARGV[0].to_i
 racine = 0
 
-until racine * racine >= entier
-    racine += 1
-end
+racine += 1 while racine * racine < entier
 
-if racine * racine == entier
-  puts racine
-else
- puts racine.to_s + " (resultat arrondi a l'entier superieur)"
-end
+# Vérifie si la racine est exacte ou arrondie
+puts racine * racine == entier ? racine : "#{racine} (résultat arrondi à l'entier supérieur)"
