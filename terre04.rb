@@ -1,14 +1,13 @@
-# Pair ou impair
-# Détermine si l'argument donné est pair ou impair
-n = ARGV[0]
+# frozen_string_literal: true
 
-if n.to_i && n.to_i > 0 
-  i = n.to_i
-  if i % 2 == 0
-    puts "pair"
-  else
-    puts "impair"
-  end
+# Pair ou impair
+# Détermine si l'argument donné est pair ou impair, y compris pour les nombres négatifs.
+# Fonctions interdites : even? et odd?
+
+if ARGV[0] =~ /^-?\d+$/ # Vérifie que l'entrée est bien un entier (positif ou négatif)
+  n = ARGV[0].to_i
+
+  puts (n % 2).zero? ? 'pair' : 'impair'
 else
- puts "Tu ne me la mettras pas à l'envers."
+  puts "Tu ne me la mettras pas à l'envers."
 end
