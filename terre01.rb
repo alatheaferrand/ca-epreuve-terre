@@ -10,7 +10,7 @@ last_separator_index = -1
 i = 0
 
 while file_path[i]
-  last_separator_index = i if file_path[i] == '/' || file_path[i] == '\\'
+  last_separator_index = i if ['/', '\\'].include?(file_path[i]) # Correction RuboCop
   i += 1
 end
 
