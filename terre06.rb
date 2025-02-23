@@ -1,17 +1,22 @@
+# frozen_string_literal: true
+
 # Inverser une chaîne
-# Affiche l'inverse de la chaîne de caractères donnée en argument
-# sans utiliser la fonction reverse
+# Affiche l'inverse de la chaîne de caractères donnée en argument.
+# Gérer les potentielles erreurs d'argument.
+# Fonction interdite: reverse.
+
+if ARGV.empty?
+  puts 'erreur'
+  exit
+end
 
 phrase = ARGV[0].to_s
-i = phrase.length.to_i
-phrase_reverse = []
+phrase_reverse = String.new
 
-if ARGV[0]
-  until i == 0
-    i -= 1
-    phrase_reverse << phrase[i]
-  end
-  puts phrase_reverse.join
-else
-  puts 'erreur'
+i = phrase.length - 1
+while i >= 0
+  phrase_reverse << phrase[i]
+  i -= 1
 end
+
+puts phrase_reverse
