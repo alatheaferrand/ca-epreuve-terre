@@ -1,32 +1,26 @@
+# frozen_string_literal: true
+
 # Trié ou pas
 # Détermine si une liste d'entiers est triée ou pas
-# Sans utiliser la fonction sort
+# Fonction interdite : sort
 
-# Vérifier s'il y a au moins un argument
-if ARGV.empty?
+# Vérification des arguments
+if ARGV.empty? || ARGV.any? { |arg| !arg.match?(/\A\d+\z/) }
   puts 'erreur'
   exit
 end
 
-# Vérifier si tous les arguments sont des nombres entiers positifs
-for n in ARGV
-  if !n.match?(/\A\d+\z/)
-    puts 'erreur'
-    exit
-  end
-end
+# Conversion en entiers
+nombres = ARGV.map(&:to_i)
 
-
-
-# Vérifier si les arguments sont rangés dans l'ordre croissant
-nombre = ARGV[0].to_i
-for n in ARGV
-  if n.to_i >= nombre
-    nombre = n.to_i
-  else
+# Vérifier si la liste est triée
+i = 0
+while i < nombres.length - 1
+  if nombres[i] > nombres[i + 1]
     puts 'Pas triée !'
     exit
   end
+  i += 1
 end
 
 puts 'Triée !'
