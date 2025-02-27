@@ -5,39 +5,35 @@
 # Attention : 0 et 1 ne sont pas des nombres premiers.
 # Gérer les erreurs d'arguments.
 
+def numeric?(arg)
+  !Integer(arg, exception: false).nil?
+end
+
+args = ARGV
+
 # Vérification des erreurs
-if ARGV.size != 1 || ARGV[0].to_i.to_s != ARGV[0] || ARGV[0].to_i.negative?
-  puts 'erreur'
+if args.size != 1
+  puts 'error: 1 argument expected'
   exit
 end
 
-entier = ARGV[0].to_i
-
-# Cas particuliers
-if [0, 1].include?(entier)
-  puts "Non, #{entier} n'est pas un nombre premier."
-  exit
-elsif entier == 2
-  puts 'Oui, 2 est un nombre premier.'
-  exit
-elsif (entier % 2).zero?
-  puts "Non, #{entier} n'est pas un nombre premier."
+number = args[0]
+unless numeric?(number)
+  puts 'error: argument must be a number'
   exit
 end
 
-# Vérification de la primalité en testant uniquement jusqu'à la racine carrée
-racine = 1
-racine += 1 while racine * racine <= entier
-
-is_prime = true
-i = 3
-
-while i <= racine
-  if (entier % i).zero?
-    is_prime = false
-    break
-  end
-  i += 2 # On saute les nombres pairs
+number = number.to_i
+if number < 2
+  puts 'error: the number must be greater than 1'
+  exit
 end
 
-puts is_prime ? "Oui, #{entier} est un nombre premier." : "Non, #{entier} n'est pas un nombre premier."
+def prime?(number, divisor = 2)
+  return true if divisor * divisor > number
+  return false if (number % divisor).zero?
+
+  prime?(number, divisor + 1)
+end
+
+puts prime?(number) ? "Oui, #{number} est un nombre premier." : "Non, #{number} n'est pas un nombre premier."
