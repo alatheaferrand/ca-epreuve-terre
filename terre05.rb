@@ -4,7 +4,7 @@
 # Affiche le résultat et le reste d'une division entre 2 nombres.
 
 def numeric?(number)
-  Integer(number, exception: false) ? true : false
+  !Integer(number, exception: false).nil?
 end
 
 args = ARGV
@@ -14,7 +14,10 @@ if args.size != 2
   exit
 end
 
-args.each { |arg| numeric?(arg) }
+unless args.all? { |arg| numeric?(arg) }
+  puts 'erreur.'
+  exit
+end
 
 dividend = args[0].to_i
 divisor = args[1].to_i
