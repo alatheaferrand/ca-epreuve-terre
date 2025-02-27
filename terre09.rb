@@ -4,17 +4,38 @@
 # Affiche la racine carrée d'un entier positif
 # Fonction interdite: la fonction sqrt
 
+def numeric?(arg)
+  !Integer(arg, exception: false).nil?
+end
+
+args = ARGV
+
 # Vérification des erreurs
-if ARGV.size != 1 || ARGV[0].to_i.to_s != ARGV[0] || ARGV[0].to_i.negative?
-  puts 'erreur'
+if args.size != 1
+  puts 'error: 1 argument expected'
+  exit
+end
+
+number = args[0]
+
+unless numeric?(number)
+  puts 'error: argument must be a number'
+  exit
+end
+
+number = number.to_i
+
+if number.negative?
+  puts 'error: the number must be positive'
   exit
 end
 
 # Calculer la racine carrée
-entier = ARGV[0].to_i
-racine = 0
+def find_root(number, root = 1)
+  return root - 1 if root * root > number
+  return root if root * root == number
 
-racine += 1 while racine * racine < entier
+  find_root(number, root + 1)
+end
 
-# Vérifie si la racine est exacte ou arrondie
-puts racine * racine == entier ? racine : "#{racine} (résultat arrondi à l'entier supérieur)"
+puts find_root(number)
