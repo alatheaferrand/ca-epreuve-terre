@@ -4,6 +4,10 @@
 # Détermine si l'argument donné est pair ou impair, y compris pour les nombres négatifs.
 # Fonctions interdites : even? et odd?
 
+def numeric?(number)
+  Integer(number, exception: false) ? true : false
+end
+
 args = ARGV
 
 if args.size != 1
@@ -13,7 +17,7 @@ end
 
 number = args[0]
 
-if number =~ /^-?\d+$/ # Vérifie que l'entrée est bien un entier (positif ou négatif)
+if numeric?(number)
   number = number.to_i
   puts (number % 2).zero? ? 'pair' : 'impair'
   exit
