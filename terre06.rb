@@ -5,18 +5,18 @@
 # Gérer les potentielles erreurs d'argument.
 # Fonction interdite: reverse.
 
-if ARGV.empty?
+args = ARGV
+
+if args.size != 1
   puts 'erreur'
   exit
 end
 
-phrase = ARGV[0].to_s
-phrase_reverse = String.new
+string = args[0]
+string_reversed = String.new
 
-i = phrase.length - 1
-while i >= 0
-  phrase_reverse << phrase[i]
-  i -= 1
+string.each_char do |char|
+  string_reversed = char + string_reversed
 end
 
-puts phrase_reverse
+puts string_reversed
