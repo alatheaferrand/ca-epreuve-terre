@@ -4,16 +4,28 @@
 # Affiche le nombre de caractères d'une chaîne passée en argument.
 # Fonctions interdites: length et size.
 
-# Gestion des erreurs
-if ARGV.empty? || ARGV[1] || ARGV[0].to_i.to_s == ARGV[0]
-  puts 'erreur'
+def numeric?(str)
+  !Integer(str, exception: false).nil?
+end
+
+def count_element(obj)
+  count = 0
+  count += 1 until obj[count].nil? # sans méthode native
+  count
+end
+
+args = ARGV
+
+if count_element(args) != 1
+  puts 'erreur : un seul argument attendu'
   exit
 end
 
-# Compteur manuel de caractères
-input = ARGV[0]
-count = 0
+string = args[0]
 
-count += 1 while input[count]
+if numeric?(string)
+  puts "erreur : l'argument ne doit pas être un nombre"
+  exit
+end
 
-puts count
+puts count_element(string)
