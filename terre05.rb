@@ -3,14 +3,27 @@
 # Divisions
 # Affiche le résultat et le reste d'une division entre 2 nombres.
 
-# Récupération des arguments convertis en entiers
-x = ARGV[0].to_i
-y = ARGV[1].to_i
+def numeric?(number)
+  Integer(number, exception: false) ? true : false
+end
+
+args = ARGV
+
+if args.size != 2
+  puts 'erreur.'
+  exit
+end
+
+args.each { |arg| numeric?(arg) }
+
+dividend = args[0].to_i
+divisor = args[1].to_i
 
 # Vérification des conditions de division
-if y.zero? || x < y
+if divisor.zero? || dividend < divisor
   puts 'erreur.'
-else
-  puts "résultat: #{x / y}"
-  puts "reste: #{x % y}"
+  exit
 end
+
+puts "résultat: #{dividend / divisor}"
+puts "reste: #{dividend % divisor}"
