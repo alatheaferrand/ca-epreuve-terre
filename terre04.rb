@@ -5,7 +5,7 @@
 # Fonctions interdites : even? et odd?
 
 def numeric?(number)
-  Integer(number, exception: false) ? true : false
+  !Integer(number, exception: false).nil?
 end
 
 args = ARGV
@@ -17,10 +17,10 @@ end
 
 number = args[0]
 
-if numeric?(number)
-  number = number.to_i
-  puts (number % 2) == 0 ? 'pair' : 'impair'
+unless numeric?(number)
+  puts "Tu ne me la mettras pas à l'envers."
   exit
 end
 
-puts "Tu ne me la mettras pas à l'envers."
+number = number.to_i
+puts (number % 2).zero? ? 'pair' : 'impair'
