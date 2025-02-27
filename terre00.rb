@@ -5,6 +5,9 @@
 
 alphabet = String.new
 
-(97..122).each { |i| alphabet << i.chr }
+first_letter = 97
+last_letter = 122
+
+(first_letter..last_letter).each { |i| alphabet << i.chr }
 
 puts alphabet
