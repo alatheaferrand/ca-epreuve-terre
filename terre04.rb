@@ -19,7 +19,7 @@ number = args[0]
 
 if numeric?(number)
   number = number.to_i
-  puts (number % 2).zero? ? 'pair' : 'impair'
+  puts (number % 2) == 0 ? 'pair' : 'impair'
   exit
 end
 
