@@ -3,4 +3,6 @@
 # Afficheur d'arguments
 # Affiche chaque argument reçu ligne par ligne.
 
-ARGV.each { |arg| puts arg }
+args = ARGV
+
+args.each { |arg| puts arg }
