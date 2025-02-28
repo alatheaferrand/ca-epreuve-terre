@@ -18,19 +18,15 @@ end
 # Extraction des heures et minutes
 time = args[0]
 hours, minutes = time.split(':').map(&:to_i)
-meridian = 'PM'
 
 # Conversion 24h → 12h
-if hours.zero?
-  hours = 12
-  meridian = 'AM'
-end
+meridian = hours >= 12 ? 'PM' : 'AM'
 
-if hours > 12
-  hours -= 12
-else
-  meridian = 'AM'
-end
+hours = case hours
+        when 0 then 12
+        when 13..23 then hours - 12
+        else hours
+        end
 
 # Affichage final
 puts "#{format('%02d', hours)}:#{format('%02d', minutes)}#{meridian}"
