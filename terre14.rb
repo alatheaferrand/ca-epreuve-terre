@@ -4,19 +4,34 @@
 # Détermine si une liste d'entiers est triée ou pas
 # Fonction interdite : sort
 
-# Vérification des arguments
-if ARGV.empty? || ARGV.any? { |arg| !arg.match?(/\A\d+\z/) }
-  puts 'erreur'
+def numeric?(arg)
+  !Integer(arg, exception: false).nil?
+end
+
+args = ARGV
+
+# Error handling
+if args.size < 2
+  puts 'error: at least two arguments expected'
   exit
 end
 
-# Conversion en entiers
-nombres = ARGV.map(&:to_i)
+unless args.all? { |arg| numeric?(arg) }
+  puts 'error: arguments must be numbers'
+  exit
+end
+
+# Conversion en integer
+i = 0
+while i < args.size
+  args[i] = args[i].to_i
+  i += 1
+end
 
 # Vérifier si la liste est triée
 i = 0
-while i < nombres.length - 1
-  if nombres[i] > nombres[i + 1]
+while i < args.size - 1
+  if args[i] > args[i + 1]
     puts 'Pas triée !'
     exit
   end
