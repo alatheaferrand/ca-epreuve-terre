@@ -3,36 +3,34 @@
 # 24 to 12
 # Convertit une heure 24h en format 12h AM/PM
 
-# Vérification des erreurs
-if ARGV.size != 1 || !ARGV[0].match?(/\A(0\d|1\d|2[0-4]):[0-5]\d\z/)
-  puts 'erreur'
+args = ARGV
+if args.size != 1
+  puts 'error: 1 argument expected'
   exit
 end
 
-# Empêche 24:XX sauf 24:00
-if ARGV[0][0..1] == '24' && ARGV[0][-3..] != ':00'
-  puts 'erreur'
+time_format_regex = /\A(0\d|1\d|2[0-3]):[0-5]\d\z/
+unless args[0].match? time_format_regex
+  puts 'error: argument must be in HH:MM format (24-hour clock), e.g., 23:59'
   exit
 end
 
 # Extraction des heures et minutes
-heure = ARGV[0]
-heures = heure[0..1].to_i
-minutes = heure[3..4]
-suffixe = 'AM'
+time = args[0]
+hours, minutes = time.split(':').map(&:to_i)
+meridian = 'PM'
 
 # Conversion 24h → 12h
-if [0, 24].include?(heures)
-  heures = 12
-elsif heures == 12
-  suffixe = 'PM'
-elsif heures > 12
-  heures -= 12
-  suffixe = 'PM'
+if hours.zero?
+  hours = 12
+  meridian = 'AM'
 end
 
-# Assurer l'affichage correct des heures (ex: 01 au lieu de 1)
-heures = "0#{heures}" if heures < 10
+if hours > 12
+  hours -= 12
+else
+  meridian = 'AM'
+end
 
 # Affichage final
-puts "#{heures}:#{minutes}#{suffixe}"
+puts "#{format('%02d', hours)}:#{format('%02d', minutes)}#{meridian}"
